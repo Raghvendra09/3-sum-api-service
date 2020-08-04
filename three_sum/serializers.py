@@ -13,9 +13,9 @@ class ThreeSumSerializer(serializers.Serializer):
     sum = serializers.IntegerField()
 
     def validate(self, attrs):
-        if not attrs['input_list'] or len(str(attrs['input_list'])) <= 2:
+        if attrs['input_list'] is None or len(attrs['input_list']) <= 2:
             raise serializers.ValidationError("Invalid Input List")
-        if not attrs['sum']:
+        if attrs['sum'] is None:
             raise serializers.ValidationError("Invalid target value")
         return attrs
 

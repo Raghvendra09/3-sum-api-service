@@ -16,8 +16,8 @@ class Solution:
         self.ans = []
 
     def three_sum_solution(self):
-        for position, num in enumerate(self.input_list):
-            if (num == 0 or self.input_list[position] != self.input_list[position-1]) and self.input_list[position] <= 0:
+        for position in range(len(self.input_list)):
+            if (position == 0 or self.input_list[position] != self.input_list[position-1]) and self.input_list[position] <= 0:
                 self.__two_sum_solution(position)
         return self.ans
 
@@ -27,9 +27,9 @@ class Solution:
         low, high = position+1, len(self.input_list) - 1
         while low < high:
             sum = self.input_list[low] + self.input_list[high]
-            if sum < target or (low > high and self.input_list[low] == self.input_list[low-1]):
+            if sum < target or (low > (position + 1) and self.input_list[low] == self.input_list[low-1]):
                 low += 1
-            elif sum > target or (high < len(self.input_list) -1 and self.input_list[high] == self.input_list[high+1]):
+            elif sum > target or (high < len(self.input_list) - 1 and self.input_list[high] == self.input_list[high+1]):
                 high -= 1
             else:
                 self.ans.append([self.input_list[position], self.input_list[low], self.input_list[high]])
